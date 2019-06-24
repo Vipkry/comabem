@@ -1,24 +1,24 @@
-CREATE TABLE Disciplina
+﻿CREATE TABLE IF NOT EXISTS  Disciplina 
 	(disc_id serial PRIMARY KEY,
 	 disc_nome VARCHAR(30) NOT NULL);
 
-CREATE TABLE Responsavel
+CREATE TABLE IF NOT EXISTS  Responsavel 
 	(resp_id serial PRIMARY KEY,
 	 resp_nome VARCHAR(30) NOT NULL);
 
-CREATE TABLE Aluno
+CREATE TABLE IF NOT EXISTS Aluno 
 	(alu_id serial PRIMARY KEY,
 	 alu_nome VARCHAR(30) NOT NULL,
 	 alu_responsavel_id INT NOT NULL,
 	 FOREIGN KEY (alu_responsavel_id) REFERENCES Responsavel(resp_id));
 
-CREATE TABLE Contrato
+CREATE TABLE IF NOT EXISTS Contrato 
 	(contr_id serial PRIMARY KEY,
 	 contr_descricao VARCHAR(100) NOT NULL,
 	 contr_aluno_id INT NOT NULL,
 	 FOREIGN KEY (contr_aluno_id) REFERENCES Aluno(alu_id));
 
-CREATE TABLE Bolsa
+CREATE TABLE IF NOT EXISTS Bolsa 
 	(bol_id serial PRIMARY KEY,
 	 bol_media_min REAL NOT NULL,
 	 bol_val_percent REAL NOT NULL,
@@ -27,12 +27,12 @@ CREATE TABLE Bolsa
 	 bol_aluno_id INT NOT NULL,
 	 FOREIGN KEY (bol_aluno_id) REFERENCES Aluno(alu_id));
  
-CREATE TABLE Refeicao
+CREATE TABLE IF NOT EXISTS Refeicao 
 	(ref_id serial PRIMARY KEY,
 	 ref_nome VARCHAR(30) NOT NULL,
 	 ref_descricao VARCHAR(100) NOT NULL);
 
-CREATE TABLE Venda
+CREATE TABLE IF NOT EXISTS Venda 
 	(ven_id serial PRIMARY KEY,
 	 ven_preco REAL NOT NULL,
 	 ven_valor_pago REAL NOT NULL,
@@ -43,10 +43,22 @@ CREATE TABLE Venda
 	 FOREIGN KEY (ven_refeicao_id) REFERENCES Refeicao(ref_id),
 	 FOREIGN KEY (ven_aluno_id) REFERENCES Aluno(alu_id));
 
-CREATE TABLE Inscricao
+CREATE TABLE IF NOT EXISTS Inscricao 
 	(insc_id serial PRIMARY KEY,
 	 insc_ativa BOOLEAN NOT NULL,
 	 insc_aluno_id INT NOT NULL,
 	 insc_disciplina_id INT NOT NULL,
 	 FOREIGN KEY (insc_aluno_id) REFERENCES Aluno(alu_id),
 	 FOREIGN KEY (insc_disciplina_id) REFERENCES Disciplina (disc_id));
+
+CREATE TABLE IF NOT EXISTS Avaliacao 
+	(av_id serial PRIMARY KEY,
+	 nome VARCHAR(255) NOT NULL);
+
+CREATE TABLE IF NOT EXISTS Nota 
+	(nota_id serial PRIMARY KEY,
+	 avaliacao_id INT NOT NULL,
+	 inscricao_id INT NOT NULL,
+	 nota FLOAT NOT NULL,
+	 FOREIGN KEY (avaliacao_id) REFERENCES Avaliacao(av_id),
+	 FOREIGN KEY (inscricao_id) REFERENCES Inscricao(insc_id));
