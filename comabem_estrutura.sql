@@ -27,10 +27,28 @@ CREATE TABLE IF NOT EXISTS Bolsa
 	 bol_aluno_id INT NOT NULL,
 	 FOREIGN KEY (bol_aluno_id) REFERENCES Aluno(alu_id));
  
+CREATE TABLE IF NOT EXISTS Receita
+	(rec_id serial PRIMARY KEY,
+	 rec_nome VARCHAR(30) NOT NULL);
+
 CREATE TABLE IF NOT EXISTS Refeicao 
 	(ref_id serial PRIMARY KEY,
 	 ref_nome VARCHAR(30) NOT NULL,
-	 ref_descricao VARCHAR(100) NOT NULL);
+	 ref_descricao VARCHAR(100) NOT NULL,
+	 rec_id INT NOT NULL,
+	 FOREIGN KEY (rec_id) REFERENCES Receita(rec_id));
+
+CREATE TABLE IF NOT EXISTS Ingrediente
+	(ing_id serial PRIMARY KEY,
+	 ing_nome VARCHAR(30) NOT NULL);
+
+CREATE TABLE IF NOT EXISTS Receita_Ingrediente
+	(rec_ing_id serial PRIMARY KEY,
+	 qtd FLOAT NOT NULL,
+	 rec_id INT NOT NULL,
+	 ing_id INT NOT NULL,
+	 FOREIGN KEY (rec_id) REFERENCES Receita(rec_id),
+	 FOREIGN KEY (ing_id) REFERENCES Ingrediente(ing_id));
 
 CREATE TABLE IF NOT EXISTS Venda 
 	(ven_id serial PRIMARY KEY,
@@ -55,10 +73,30 @@ CREATE TABLE IF NOT EXISTS Avaliacao
 	(av_id serial PRIMARY KEY,
 	 nome VARCHAR(255) NOT NULL);
 
-CREATE TABLE IF NOT EXISTS Nota 
+CREATE TABLE IF NOT EXISTS Nota
 	(nota_id serial PRIMARY KEY,
 	 avaliacao_id INT NOT NULL,
 	 inscricao_id INT NOT NULL,
 	 nota FLOAT NOT NULL,
 	 FOREIGN KEY (avaliacao_id) REFERENCES Avaliacao(av_id),
 	 FOREIGN KEY (inscricao_id) REFERENCES Inscricao(insc_id));
+
+CREATE TABLE IF NOT EXISTS Nutriente -- Sódio potássio etc
+	(nut_id serial PRIMARY KEY,
+	 nome VARCHAR(255) NOT NULL);
+
+CREATE TABLE IF NOT EXISTS Valor_nutricional
+	(val_nut_id serial PRIMARY KEY,
+	 ing_id INT NOT NULL,
+	 nut_id INT NOT NULL,
+	 valor FLOAT NOT NULL,
+	 FOREIGN KEY (ing_id) REFERENCES Ingrediente(ing_id),
+	 FOREIGN KEY (nut_id) REFERENCES Nutriente(nut_id));
+
+CREATE TABLE IF NOT EXISTS Recomendacao_nutricional
+	(recomendacao_id SERIAL PRIMARY KEY,
+	 valor FLOAT NOT NULL,
+	 idade INT NOT NULL,
+	 nut_id INT NOT NULL,
+	 margem_percent FLOAT NOT NULL,
+	 FOREIGN KEY (nut_id) REFERENCES Nutriente(nut_id));
