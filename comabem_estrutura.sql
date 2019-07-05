@@ -7,6 +7,8 @@ DROP TABLE INGREDIENTE CASCADE;
 DROP TABLE RECEITA CASCADE;
 DROP TABLE REFEICAO CASCADE;
 DROP TABLE RECEITA_INGREDIENTE CASCADE;
+DROP TABLE VENDA CASCADE;
+DROP TABLE CONTRATO CASCADE;
 
 CREATE TABLE IF NOT EXISTS  Disciplina 
 	(disc_id serial PRIMARY KEY,
@@ -20,6 +22,7 @@ CREATE TABLE IF NOT EXISTS Aluno
 	(alu_id serial PRIMARY KEY,
 	 alu_nome VARCHAR(30) NOT NULL,
 	 alu_responsavel_id INT NOT NULL,
+	 idade INT NOT NULL,
 	 FOREIGN KEY (alu_responsavel_id) REFERENCES Responsavel(resp_id));
 
 CREATE TABLE IF NOT EXISTS Contrato 
@@ -64,14 +67,15 @@ CREATE TABLE IF NOT EXISTS Venda
 	(ven_id serial PRIMARY KEY,
 	 ven_preco REAL NOT NULL,
 	 ven_valor_pago REAL NOT NULL,
-	 ven_contrato_id INT NOT NULL,
+	 ven_contrato_id INT DEFAULT NULL,
 	 ven_refeicao_id INT NOT NULL,
 	 ven_aluno_id INT NOT NULL,
+	 ven_data DATE NOT NULL,
 	 FOREIGN KEY (ven_contrato_id) REFERENCES Contrato(contr_id),
 	 FOREIGN KEY (ven_refeicao_id) REFERENCES Refeicao(ref_id),
 	 FOREIGN KEY (ven_aluno_id) REFERENCES Aluno(alu_id));
 
-CREATE TABLE IF NOT EXISTS Inscricao 
+CREATE TABLE IF NOT EXISTS Inscricao
 	(insc_id serial PRIMARY KEY,
 	 insc_ativa BOOLEAN NOT NULL,
 	 insc_aluno_id INT NOT NULL,
