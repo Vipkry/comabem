@@ -22,22 +22,22 @@ INSERT INTO Responsavel (resp_nome) VALUES ('Arthur Nascimento');
 INSERT INTO Responsavel (resp_nome) VALUES ('Lucas Sorrentino');
 
 -- Alunos
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('João', 1, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Gustavo', 1, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Gabriel', 1, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Luan', 2, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Pedro', 2, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Raíssa', 2, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Carol', 3, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Elisângela', 3, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Bruno', 3, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Lucas', 4, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Márcio', 4, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Vinícius', 4, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Flávia', 5, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Mariana', 5, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Fernanda', 6, 10);
-INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Maria', 6, 10);
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('João', 1, 10); --1
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Gustavo', 1, 10);--2
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Gabriel', 1, 10); --3
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Luan', 2, 10); --4
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Pedro', 2, 10); --5
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Raíssa', 2, 10); --6
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Carol', 3, 10); --7
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Elisângela', 3, 10); --8
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Bruno', 3, 10); --9
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Lucas', 4, 10); --10
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Márcio', 4, 10); --11
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Vinícius', 4, 10); --12
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Flávia', 5, 10); --13
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Mariana', 5, 10); --14
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Fernanda', 6, 10); --15
+INSERT INTO Aluno (alu_nome, alu_responsavel_id, idade) VALUES ('Maria', 6, 10); --16
 
 -- Nutrientes
 INSERT INTO Nutriente (nome) VALUES ('Sódio'); -- 1
@@ -119,4 +119,56 @@ INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven
 
 
 -- Recomendacao_nutricional
-INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (40, 10, 9, 50); -- 20g de gordura pra 10 Alunos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (40, 10, 9, 50); -- 20g de gordura pra 10 anos
+
+
+-- Inscricao
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 1, 2, '2019-01-01'); --1: Português
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 3, 2, '2019-01-01'); --2
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 4, 2, '2019-01-01'); --3
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 5, 2, '2019-01-01'); --4
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 2, 2, '2018-01-01'); --5
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 3, 2, '2018-01-01'); --6
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 4, 2, '2018-01-01'); --7
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 2, '2018-01-01'); --8
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 2, '2017-01-01'); --9
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 6, 2, '2017-01-01');--10
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 7, 2, '2017-01-01'); --11
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 8, 2, '2017-01-01'); --12
+
+
+
+-- Avaliacao
+INSERT INTO Avaliacao (nome) VALUES ('P1');
+INSERT INTO Avaliacao (nome) VALUES ('P2');
+INSERT INTO Avaliacao (nome) VALUES ('VS');
+
+
+-- Nota
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 1, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 1, 3.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (3, 1, 5.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 2, 2.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 2, 2.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 3, 1.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 3, 5.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 4, 8.5);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 4, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 5, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 5, 10.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 6, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 6, 4.9);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (3, 6, 3.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 7, 1.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 7, 1.5);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 8, 2.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 8, 3.7);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 9, 1.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 9, 0.7);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 10, 6.3);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 10, 7.8);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 11, 5.2);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 11, 5.8);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (3, 11, 7.5);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 12, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 12, 7.0);
