@@ -136,6 +136,19 @@ INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data)
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 7, 2, '2017-01-01'); --11
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 8, 2, '2017-01-01'); --12
 
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 1, 3, '2019-01-01'); --13: Matemática
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 3, 3, '2019-01-01'); --14
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 4, 3, '2019-01-01'); --15
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 5, 3, '2019-01-01'); --16
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 2, 3, '2018-01-01'); --17
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 9, 3, '2018-01-01'); --18
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 4, 3, '2018-01-01'); --19
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 3, '2018-01-01'); --20
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 10, 3, '2017-01-01'); --21
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 6, 3, '2017-01-01'); --22
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 7, 3, '2017-01-01'); --23
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 8, 3, '2017-01-01'); --24
+
 
 
 -- Avaliacao
@@ -172,3 +185,31 @@ INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 11, 5.8);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (3, 11, 7.5);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 12, 7.0);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 12, 7.0);
+
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 13, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 13, 3.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (3, 13, 6.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 14, 2.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 14, 10.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 15, 1.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 15, 5.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 16, 8.5);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 16, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 17, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 17, 10.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 18, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 18, 4.9);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (3, 18, 3.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 19, 1.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 19, 1.5);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 20, 2.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 20, 3.7);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 21, 1.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 21, 0.7);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 22, 6.3);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 22, 7.8);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 23, 5.2);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 23, 5.8);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (3, 23, 7.5);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 24, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 24, 7.0);

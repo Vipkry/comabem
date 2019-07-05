@@ -97,3 +97,30 @@ BEGIN
 					group by insc_ano;
 END;$$ language plpgsql;
 
+
+CREATE OR REPLACE FUNCTION disc_acima_da_media_de_reprovacao()
+RETURNS TABLE(
+	disc_id_retorno int,
+	disc_nome_retorno VARCHAR(255)
+) AS $$
+DECLARE
+	c1 cursor for select disc_id from Disciplina;
+	taxa_atual float;
+	media float;
+BEGIN
+	for d in c1 loop
+		select AVG(indice_de_reprovacao) into media
+			from taxa_de_reprovacao(d.disc_id)
+			where ano<>EXTRACT(YEAR FROM now());
+
+		select indice_de_reprovacao into taxa_atual
+			from taxa_de_reprovacao(d.disc_id)
+			where ano=EXTRACT(YEAR FROM now());
+		
+		if (taxa_atual>media) then
+			return query select disc_id, disc_nome
+			from disciplina where disc_id=d.disc_id;
+		end if;
+	end loop;
+END;$$ language plpgsql;
+
