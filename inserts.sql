@@ -60,11 +60,11 @@ INSERT INTO Ingrediente (ing_nome) VALUES ('Pão'); -- 5
 INSERT INTO Ingrediente (ing_nome) VALUES ('Queijo prato'); -- 6
 INSERT INTO Ingrediente (ing_nome) VALUES ('Alface'); -- 7
 INSERT INTO Ingrediente (ing_nome) VALUES ('Grão de Bico'); -- 8
-INSERT INTO Ingrediente (ing_nome) VALUES ('Hortelã');
-INSERT INTO Ingrediente (ing_nome) VALUES ('Cebola');
-INSERT INTO Ingrediente (ing_nome) VALUES ('Presunto');
-INSERT INTO Ingrediente (ing_nome) VALUES ('Goiabada');
-INSERT INTO Ingrediente (ing_nome) VALUES ('Bacon');
+INSERT INTO Ingrediente (ing_nome) VALUES ('Hortelã'); -- 9
+INSERT INTO Ingrediente (ing_nome) VALUES ('Cebola'); -- 10
+INSERT INTO Ingrediente (ing_nome) VALUES ('Presunto'); -- 11
+INSERT INTO Ingrediente (ing_nome) VALUES ('Goiabada'); -- 12
+INSERT INTO Ingrediente (ing_nome) VALUES ('Bacon'); -- 13
 
 
 -- Valore Nutricionais
@@ -76,15 +76,15 @@ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 2, 0.2); -- car
 INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 7, 0.02); -- proteína
 
 -- Arroz:
-INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 10, 1.3);
-INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 2, 0.3);
-INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 8, 0.001); -- fibra
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (2, 10, 1.3);
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (2, 2, 0.3);
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (2, 8, 0.001); -- fibra
 
 -- Grão de bico
-INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 10, 2);
-INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 9, 0.3);
-INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 2, 0.3);
-INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (1, 7, 0.9);
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (8, 10, 2);
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (8, 9, 0.3);
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (8, 2, 0.3);
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (8, 7, 0.9);
 
 -- Receitas
 INSERT INTO Receita (rec_nome) VALUES ('Arroz com Fritas 1');
@@ -120,6 +120,22 @@ INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven
 
 -- Recomendacao_nutricional
 INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (40, 10, 9, 50); -- 20g de gordura pra 10 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (40, 10, 2, 50); -- 40g de carbo pra 10 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (20, 10, 7, 50); -- 3g de proteína pra 10 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (20, 10, 8, 50); -- 0.5g de fibra pra 10 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (400, 10, 10, 50); -- 400 calorias pra 10 anos
+
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (10, 6, 9, 50); -- 10g de gordura pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (10, 6, 2, 50); -- 10g de carbo pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (20, 6, 7, 50); -- 1g de proteína pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (20, 6, 8, 50); -- 0.3g de fibra pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (300, 6, 10, 50); -- 300 calorias pra 6 anos
+
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (30,  8, 9, 50); -- 10g de gordura pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (23,  8, 2, 50); -- 23g de carbo pra 8 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (30,   8, 7, 50); -- 1g de proteína pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (30, 8, 8, 50); -- 0.6g de fibra pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (380, 8, 10, 50); -- 300 calorias pra 6 anos
 
 
 -- Inscricao
@@ -213,3 +229,33 @@ INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 23, 5.8);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (3, 23, 7.5);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 24, 7.0);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 24, 7.0);
+
+
+
+
+
+--INSERTS PARA QUEBRAR RESTRIÇÃO 3
+INSERT INTO Receita (rec_nome) VALUES ('Bacon com creme de goiabada 1'); --3
+
+INSERT INTO Refeicao (ref_nome, ref_descricao, rec_id) VALUES ('Bacon com creme de goiabada', 'Delicioso prato agridoce', 3); 
+
+-- Bacon
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (13, 10, 5.4); --Calorias
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (13, 9, 0.14); -- Gordura saturada
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (13, 2, 0.01); -- Carboidratos
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (13, 7, 0.37); -- Proteína
+
+--Creme de Leite
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 10, 1.93); --Calorias
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 9, 0.12); -- Gordura saturada
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 2, 0.04); -- Carboidratos
+
+-- Goiabada
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (12, 10, 2.49); --Calorias
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (12, 2, 0.64); -- Carboidratos
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (12, 7, 0.01); -- Proteína
+
+INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 13, 70); -- 200g de bacon
+INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 3, 50); -- 50g de Creme de leite
+INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 12, 75); -- 75g de goiabada
+
