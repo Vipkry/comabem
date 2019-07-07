@@ -9,10 +9,11 @@ DECLARE
 	media float;
 	vs float;
 	insc_aluno int;
+	desconto float;
 BEGIN
 	-- Armazena data de cancelamento e media minima da bolsa do aluno cujas notas estao sendo utilizadas em alguma operacao
-	SELECT B.bol_data_fim, B.bol_media_min
-	INTO data_cancel, minimo
+	SELECT B.bol_data_fim, B.bol_media_min, B.bol_val_percent
+	INTO data_cancel, minimo, desconto
 	FROM Bolsa B
 	INNER JOIN Aluno A ON (B.bol_aluno_id = A.alu_id)
 	INNER JOIN Inscricao I ON (I.insc_aluno_id = A.alu_id)
@@ -54,8 +55,9 @@ BEGIN
 			                 WHERE insc_aluno = A1.alu_id);
 		-- Altera valor das vendas do contrato
 		UPDATE Venda V1
-		SET 
-		WHERE V1.ven_contrato_id IN (SELECT V2.ven_contrato_id
+		SET valor_pago = valor_pago + (desconto * valor_pago / 100)
+		WHERE 	V1.ven_data >= now()
+			AND V1.ven_contrato_id IN (SELECT V2.ven_contrato_id
 					     FROM Venda V2
 					     INNER JOIN Contrato C ON (C.contr_id = V2.ven_contrato_id AND C.contr_aluno_id = insc_aluno);
 
