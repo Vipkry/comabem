@@ -20,7 +20,7 @@ BEGIN
 	WHERE NEW.inscricao_id = I.insc_id;
 	
 	-- Calcula media do aluno
-	SELECT AVG(N.nota), NEW.inscricao_id
+	SELECT AVG(N.nota),  AVG(I1.insc_aluno_id)
 	INTO media, insc_aluno
 	FROM Nota N
 	INNER JOIN Inscricao I1 ON (I1.insc_id = N.inscricao_id)
@@ -52,13 +52,11 @@ BEGIN
 	-- Se bolsa ativa e aluno teve um mau desempenho
 	IF (data_cancel is NULL AND minimo > media) THEN
 		raise notice 'min: %, med: %', minimo,media;
-		raise notice 'data: %', data_cancel;
+		raise notice 'data: %', insc_aluno;
 		-- Cancela bolsa
 		UPDATE Bolsa
    		SET bol_data_fim = now()
-		WHERE bol_aluno_id IN (SELECT A1.alu_id
-			     		 FROM Aluno A1
-			                 WHERE insc_aluno = A1.alu_id);
+		WHERE bol_aluno_id =insc_aluno;
 		-- Altera valor das vendas do contrato
 		UPDATE Venda
 		SET ven_valor_pago = ven_valor_pago + (desconto * ven_valor_pago / 100)
