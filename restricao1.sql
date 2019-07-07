@@ -59,7 +59,8 @@ BEGIN
 		WHERE 	V1.ven_data >= now()
 			AND V1.ven_contrato_id IN (SELECT V2.ven_contrato_id
 					     FROM Venda V2
-					     INNER JOIN Contrato C ON (C.contr_id = V2.ven_contrato_id AND C.contr_aluno_id = insc_aluno);
+					     INNER JOIN Contrato C ON C.contr_id = V2.ven_contrato_id
+						 WHERE C.contr_aluno_id = insc_aluno);
 
 	END IF;
 
