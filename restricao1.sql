@@ -20,10 +20,11 @@ BEGIN
 	WHERE NEW.inscricao_id = I.insc_id;
 	
 	-- Calcula media do aluno
-	SELECT AVG(N.nota), I1.insc_aluno_id
+	SELECT AVG(N.nota), NEW.inscricao_id
 	INTO media, insc_aluno
 	FROM Nota N
-	INNER JOIN Inscricao I1 ON (I1.insc_id = NEW.inscricao_id)
+	INNER JOIN Inscricao I1 ON (I1.insc_id = N.inscricao_id)
+	WHERE N.inscricao_id=NEW.inscricao_id
 	AND N.avaliacao_id IN (SELECT avaliacao_id
 			       FROM Avaliacao 
 			       WHERE nome<>'VS');
@@ -33,7 +34,8 @@ BEGIN
 		SELECT N1.nota, I2.insc_aluno_id
 		INTO vs, insc_aluno
 		FROM Nota N1
-		INNER JOIN Inscricao I2 ON (I2.insc_id = NEW.inscricao_id)
+		INNER JOIN Inscricao I2 ON (I2.insc_id = N1.inscricao_id)
+		WHERE N1.inscricao_id=NEW.inscricao_id
 		AND N1.avaliacao_id IN (SELECT av_id
 					FROM Avaliacao 
 					WHERE nome='VS');
@@ -44,20 +46,24 @@ BEGIN
 			media = vs;
 		END IF;
 	END IF;
+
+	
 	
 	-- Se bolsa ativa e aluno teve um mau desempenho
 	IF (data_cancel is NULL AND minimo > media) THEN
+		raise notice 'min: %, med: %', minimo,media;
+		raise notice 'data: %', data_cancel;
 		-- Cancela bolsa
-		UPDATE Bolsa B1
-   		SET B1.bol_data_fim = now()
-		WHERE B1.bol_aluno_id IN (SELECT A1.alu_id
+		UPDATE Bolsa
+   		SET bol_data_fim = now()
+		WHERE bol_aluno_id IN (SELECT A1.alu_id
 			     		 FROM Aluno A1
 			                 WHERE insc_aluno = A1.alu_id);
 		-- Altera valor das vendas do contrato
-		UPDATE Venda V1
-		SET valor_pago = valor_pago + (desconto * valor_pago / 100)
-		WHERE 	V1.ven_data >= now()
-			AND V1.ven_contrato_id IN (SELECT V2.ven_contrato_id
+		UPDATE Venda
+		SET ven_valor_pago = ven_valor_pago + (desconto * ven_valor_pago / 100)
+		WHERE 	ven_data >= now()
+			AND ven_contrato_id IN (SELECT V2.ven_contrato_id
 					     FROM Venda V2
 					     INNER JOIN Contrato C ON C.contr_id = V2.ven_contrato_id
 						 WHERE C.contr_aluno_id = insc_aluno);
