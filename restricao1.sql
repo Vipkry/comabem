@@ -20,13 +20,12 @@ BEGIN
 		UPDATE Bolsa B
     SET valor_porcentagem = 0
     WHERE B.bol_aluno_id IN (SELECT A1.alu_id
-										         FROM Aluno A1
-										         INNER JOIN Inscricao I1 ON (I1.insc_aluno_id = A1.alu_id AND I1.insc_ativa)
- 									           INNER JOIN Nota N1 ON (I1.insc_id = N1.inscricao_id)
-										         WHERE minimo > (SELECT AVG(N2.nota)
-									 	      		               FROM Nota N2
-												                     INNER JOIN Inscricao I2 ON (I2.insc_id = N2.inscricao_id AND I2.insc_ativa)
-												                     INNER JOIN Aluno A2 ON (I2.insc_aluno_id = A2.alu_id)));
+			     FROM Aluno A1
+			     INNER JOIN Inscricao I1 ON (I1.insc_aluno_id = A1.alu_id AND I1.insc_ativa)
+			     WHERE minimo > (SELECT AVG(N2.nota)
+					     FROM Nota N2
+					     INNER JOIN Inscricao I2 ON (I2.insc_id = N2.inscricao_id AND I2.insc_ativa)
+					     INNER JOIN Aluno A2 ON (I2.insc_aluno_id = A2.alu_id)));
 
 	END IF;
 
