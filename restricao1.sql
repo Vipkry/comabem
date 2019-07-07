@@ -68,7 +68,7 @@ BEGIN
 END; $$ language plpgsql;
 
 
-DROP TRIGGER if verifica_bolsa_trigger ON Nota CASCADE;
+DROP TRIGGER if exists verifica_bolsa_trigger ON Nota CASCADE;
 
 CREATE TRIGGER verifica_bolsa_trigger
 AFTER INSERT OR UPDATE ON Nota
