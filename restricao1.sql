@@ -68,7 +68,6 @@ AFTER INSERT OR UPDATE ON Nota
 FOR EACH ROW EXECUTE PROCEDURE verifica_bolsa();
 
 
-
 CREATE OR REPLACE FUNCTION altera_valor_contrato()
 RETURNS trigger AS $$
 DECLARE
@@ -76,7 +75,7 @@ BEGIN
 	IF (NEW.bol_data_fim is not null AND OLD.bol_data_fim is null) then
 		-- Altera valor das vendas do contrato
 		UPDATE Venda
-		SET ven_valor_pago = ven_valor_pago + (Old.bol_val_percent * ven_valor_pago / 100)
+		SET ven_valor_pago = ven_preco
 		WHERE ven_data >= now()
 			AND ven_contrato_id IN (SELECT V2.ven_contrato_id
 					     FROM Venda V2
