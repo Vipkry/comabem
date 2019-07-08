@@ -276,3 +276,5 @@ INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALU
 -- INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 3, 70); -- 70g de Creme de leite
 -- INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 5, 100); -- 100g de goiabada
 
+
+INSERT INTO Bolsa (bol_media_min, bol_val_percent, bol_data_ini, bol_data_fim, bol_aluno_id) VALUES (3, 20, '2019-01-01', null, 1);

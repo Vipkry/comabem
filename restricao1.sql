@@ -46,8 +46,6 @@ BEGIN
 		END IF;
 	END IF;
 
-	
-	
 	-- Se bolsa ativa e aluno teve um mau desempenho
 	IF (data_cancel is NULL AND minimo > media) THEN
 		raise notice 'min: %, med: %', minimo,media;
@@ -56,15 +54,6 @@ BEGIN
 		UPDATE Bolsa
    		SET bol_data_fim = now()
 		WHERE bol_aluno_id =insc_aluno;
-		-- Altera valor das vendas do contrato
-		UPDATE Venda
-		SET ven_valor_pago = ven_valor_pago + (desconto * ven_valor_pago / 100)
-		WHERE 	ven_data >= now()
-			AND ven_contrato_id IN (SELECT V2.ven_contrato_id
-					     FROM Venda V2
-					     INNER JOIN Contrato C ON C.contr_id = V2.ven_contrato_id
-						 WHERE C.contr_aluno_id = insc_aluno);
-
 	END IF;
 
 	RETURN NEW;
@@ -77,3 +66,32 @@ DROP TRIGGER if exists verifica_bolsa_trigger ON Nota CASCADE;
 CREATE TRIGGER verifica_bolsa_trigger
 AFTER INSERT OR UPDATE ON Nota
 FOR EACH ROW EXECUTE PROCEDURE verifica_bolsa();
+
+
+
+CREATE OR REPLACE FUNCTION altera_valor_contrato()
+RETURNS trigger AS $$
+DECLARE
+BEGIN
+	IF (NEW.bol_data_fim is not null AND OLD.bol_data_fim is null) then
+		-- Altera valor das vendas do contrato
+		UPDATE Venda
+		SET ven_valor_pago = ven_valor_pago + (Old.bol_val_percent * ven_valor_pago / 100)
+		WHERE ven_data >= now()
+			AND ven_contrato_id IN (SELECT V2.ven_contrato_id
+					     FROM Venda V2
+					     INNER JOIN Contrato C ON C.contr_id = V2.ven_contrato_id
+						 WHERE C.contr_aluno_id = NEW.bol_aluno_id);
+	END IF;
+
+	RETURN NEW;
+	
+END; $$ language plpgsql;
+
+
+
+DROP TRIGGER if exists altera_contrato_perda_bolsa_trigger ON Bolsa CASCADE;
+
+CREATE TRIGGER altera_contrato_perda_bolsa_trigger
+AFTER UPDATE ON Bolsa
+FOR EACH ROW EXECUTE PROCEDURE altera_valor_contrato();
