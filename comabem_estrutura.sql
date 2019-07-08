@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS Contrato
 	(contr_id serial PRIMARY KEY,
 	 contr_descricao VARCHAR(100) NOT NULL,
 	 contr_aluno_id INT NOT NULL,
+	 contr_tem_bolsa BOOLEAN DEFAULT FALSE,
 	 FOREIGN KEY (contr_aluno_id) REFERENCES Aluno(alu_id));
 
 CREATE TABLE IF NOT EXISTS Bolsa 

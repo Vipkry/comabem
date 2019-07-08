@@ -206,7 +206,7 @@ INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 24, 7.0);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 24, 7.0);
 
 -- Contrato
-INSERT INTO Contrato(contr_descricao, contr_aluno_id) VALUES ('Contratinho do pai', 1);
+INSERT INTO Contrato(contr_descricao, contr_aluno_id, contr_tem_bolsa) VALUES ('Contratinho do pai', 1, TRUE);
 
 -- Venda
 INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 14.90, 1, 1, '2019-01-01', 1); --mal
