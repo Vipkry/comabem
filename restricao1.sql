@@ -1,6 +1,5 @@
 -- Restricao 1 - perde desconto na bolsa caso notas estejam abaixo do minimo requerido
 
-
 CREATE OR REPLACE FUNCTION verifica_bolsa()
 RETURNS trigger AS $$
 DECLARE
@@ -11,7 +10,7 @@ DECLARE
 	insc_aluno int;
 	desconto float;
 BEGIN
-	-- Armazena data de cancelamento e media minima da bolsa do aluno cujas notas estao sendo utilizadas em alguma operacao
+	-- Armazena data de cancelamento, media minima e porcentagem de desconto da bolsa do aluno cujas notas estao sendo utilizadas em alguma operacao
 	SELECT B.bol_data_fim, B.bol_media_min, B.bol_val_percent
 	INTO data_cancel, minimo, desconto
 	FROM Bolsa B
@@ -78,9 +77,3 @@ DROP TRIGGER if exists verifica_bolsa_trigger ON Nota CASCADE;
 CREATE TRIGGER verifica_bolsa_trigger
 AFTER INSERT OR UPDATE ON Nota
 FOR EACH ROW EXECUTE PROCEDURE verifica_bolsa();
-
-
-
--- minimo pode ser colocado como uma condiçao no WHERE de SELECT em Aluno?
--- valor_porcentagem fica como 0 ou 100?
--- trigger eh chamado depois de insercao e alteracao em Nota?
