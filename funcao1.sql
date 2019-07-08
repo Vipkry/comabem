@@ -59,5 +59,13 @@ BEGIN
                 dia_ant = dia.dia_retorno;
             end if;
         end loop;
+        
+        if (dia_prim is not null and dia_ant is not null) then
+            return query select param_aluno_id, dia_prim, dia_ant, nut.nut_id, nut.nome;
+        end if;
+        
+        dia_prim = NULL;
+        dia_ant = NULL;
+
     end loop;
 END;$$ language plpgsql;
