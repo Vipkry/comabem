@@ -4,8 +4,8 @@ RETURNS TABLE(
     id_nut_retorno int
 ) AS $$
 DECLARE
-    c10 cursor for select distinct ven_data 
-                    from venda  
+    c10 cursor for  select distinct ven_data 
+                    from venda
                     where ven_aluno_id=param_aluno_id 
                     and ven_data<=now()
                     order by ven_data ASC;
@@ -37,7 +37,7 @@ RETURNS TABLE(
 ) AS $$
 DECLARE
     c100 cursor for select nut_id, nome from nutriente order by nut_id ASC;
-    c200 cursor(param_nut int) for select DISTINCT dia_retorno 
+    c200 cursor(param_nut int) for  select DISTINCT dia_retorno 
                                     from dias_de_ma_alimentacao(param_aluno_id)
                                     where id_nut_retorno=param_nut
                                     order by dia_retorno ASC;
@@ -51,7 +51,7 @@ BEGIN
             if(dia_ant is NULL) then
                 dia_ant = dia.dia_retorno;
                 dia_prim = dia.dia_retorno;
-            elsif(dia_ant = (dia.dia_retorno- integer '1')) then
+            elsif(dia_ant = (dia.dia_retorno - integer '1')) then
                 dia_ant = dia.dia_retorno;
             else
                 return query select param_aluno_id, dia_prim, dia_ant, nut.nut_id, nut.nome;

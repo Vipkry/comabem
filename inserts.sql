@@ -115,33 +115,34 @@ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (4, 2, 5);-- prote�
 -- Receitas
 INSERT INTO Receita (rec_nome) VALUES ('Arroz com Fritas 1'); --1
 INSERT INTO Receita (rec_nome) VALUES ('Arroz com grão de bico 1'); --2
+INSERT INTO Receita (rec_nome) VALUES ('Arroz com grão de bico 2'); --2
 
 -- Receitas Ingredientes
 
 -- Arroz com fritas
 -- 1100
 INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (1, 2, 100); -- 100g de arroz
-INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (1, 1, 100); -- 60g de batata frita
+INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (1, 1, 100); -- 100g de batata frita
 
 -- Arroz com Grão de Bico
 -- 600
 INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (2, 2, 100); -- 100g de arroz
-INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (2, 4, 100); -- 20g de grão de bico
+INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (2, 4, 100); -- 100g de grão de bico
+
+-- Arroz com Grão de Bico 2
+-- 300
+INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 2, 50); -- 50g de arroz
+INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 4, 50); -- 50g de grão de bico
 
 -- Refeição
 INSERT INTO Refeicao (ref_nome, ref_descricao, rec_id) VALUES ('Arroz com Fritas', 'Arroz com fritas da vovó cilda', 1); 
 INSERT INTO Refeicao (ref_nome, ref_descricao, rec_id) VALUES ('Arroz com grão de bico', 'Arroz simples com grão de bico', 2); 
-
-
-
-
-
+INSERT INTO Refeicao (ref_nome, ref_descricao, rec_id) VALUES ('Arroz com grão de bico INSUF', 'Arroz simples com grão de bico PEQUENO', 3); 
 
 -- Avaliacao
 INSERT INTO Avaliacao (nome) VALUES ('P1');
 INSERT INTO Avaliacao (nome) VALUES ('P2');
 INSERT INTO Avaliacao (nome) VALUES ('VS');
-
 
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 25, 7.0);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 25,10.0);
@@ -243,9 +244,9 @@ INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALU
 INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (400, 6, 4, 50); -- 0.3g de fibra pra 6 anos
 INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (400, 6, 5, 50); -- 300 calorias pra 6 anos
 
-INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (600,  8, 1, 50); -- 10g de gordura pra 6 anos
-INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (600,  8, 2, 50); -- 23g de carbo pra 8 anos
-INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (600,   8, 3, 50); -- 1g de proteína pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (600, 8, 1, 50); -- 10g de gordura pra 6 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (600, 8, 2, 50); -- 23g de carbo pra 8 anos
+INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (600, 8, 3, 50); -- 1g de proteína pra 6 anos
 INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (600, 8, 4, 50); -- 0.6g de fibra pra 6 anos
 INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALUES (600, 8, 5, 50); -- 300 calorias pra 6 anos
 

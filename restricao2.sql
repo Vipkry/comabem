@@ -87,9 +87,7 @@ FOR EACH ROW EXECUTE PROCEDURE educacao_alimentar_function();
 
 
 -- INSUFICIENTE: 
---INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data) VALUES (19.90, 14.90, 2, 3, '2019-01-01');
--- SAUDAVEL:
--- INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data) VALUES (19.90, 14.90, 2, 3, '2019-01-01');
+-- INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data) VALUES (19.90, 14.90, 3, 3, '2019-01-01');
 
 --SELECT * FROM COMEU_BEM('2019-01-01', 3);
 
@@ -97,4 +95,4 @@ FOR EACH ROW EXECUTE PROCEDURE educacao_alimentar_function();
 
 --select * from recomendacao_nutricional where idade = 10;
 
---select * from nota where inscricao_id = 26;
+--select * from nota where inscricao_id = 26;	
