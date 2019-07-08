@@ -1,5 +1,4 @@
 -- Disciplinas
-
 INSERT INTO Disciplina (disc_nome) VALUES ('Educação Alimentar');--1
 INSERT INTO Disciplina (disc_nome) VALUES ('Português');--2
 INSERT INTO Disciplina (disc_nome) VALUES ('Matemática');--3
@@ -7,7 +6,6 @@ INSERT INTO Disciplina (disc_nome) VALUES ('Robótica');--4
 
 
 -- Responsaveis
-
 INSERT INTO Responsavel (resp_nome) VALUES ('Renata Bahiense');
 INSERT INTO Responsavel (resp_nome) VALUES ('Luanna Lima Sá');
 INSERT INTO Responsavel (resp_nome) VALUES ('Arly Souza Cruz');
@@ -58,7 +56,6 @@ INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data)
 
 
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 1, 1, '2019-01-01'); --25: Educ. Alimentar
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 3, 1, '2019-01-01'); --26
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 4, 1, '2019-01-01'); --27
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 5, 1, '2019-01-01'); --28
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 2, 1, '2018-01-01'); --29
@@ -71,9 +68,7 @@ INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data)
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 8, 1, '2017-01-01'); --36
 
 
-
-
-
+-- INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (true, 3, 1, '2019-02-01'); --36
 
 
 -- Nutrientes
@@ -206,7 +201,7 @@ INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 24, 7.0);
 INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 24, 7.0);
 
 -- Contrato
-INSERT INTO Contrato(contr_descricao, contr_aluno_id, contr_tem_bolsa) VALUES ('Contratinho do pai', 1, TRUE);
+INSERT INTO Contrato (contr_descricao, contr_aluno_id, contr_tem_bolsa) VALUES ('Contratinho do pai', 1, TRUE);
 
 -- Venda
 INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 14.90, 1, 1, '2019-01-01', 1); --mal
