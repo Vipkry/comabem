@@ -11,12 +11,14 @@ DECLARE
 	desconto float;
 BEGIN
 	-- Armazena data de cancelamento, media minima e porcentagem de desconto da bolsa do aluno cujas notas estao sendo utilizadas em alguma operacao
-	SELECT B.bol_data_fim, B.bol_media_min, B.bol_val_percent
-	INTO data_cancel, minimo, desconto
+	SELECT B.bol_data_fim, B.bol_media_min
+	INTO data_cancel, minimo
 	FROM Bolsa B
 	INNER JOIN Aluno A ON (B.bol_aluno_id = A.alu_id)
 	INNER JOIN Inscricao I ON (I.insc_aluno_id = A.alu_id)
 	WHERE NEW.inscricao_id = I.insc_id;
+	
+
 	
 	-- Calcula media do aluno
 	SELECT AVG(N.nota),  AVG(I1.insc_aluno_id)
@@ -48,12 +50,7 @@ BEGIN
 
 	-- Se bolsa ativa e aluno teve um mau desempenho
 	IF (data_cancel is NULL AND minimo > media) THEN
-		raise notice 'min: %, med: %', minimo,media;
-		raise notice 'data: %', insc_aluno;
-		-- Cancela bolsa
-		UPDATE Bolsa
-   		SET bol_data_fim = now()
-		WHERE bol_aluno_id =insc_aluno;
+		raise exception 'NOTA NÃO PODE SER MENOR QUE A MÍNIMA DA BOLSA';
 	END IF;
 
 	RETURN NEW;
@@ -68,21 +65,60 @@ AFTER INSERT OR UPDATE ON Nota
 FOR EACH ROW EXECUTE PROCEDURE verifica_bolsa();
 
 
-CREATE OR REPLACE FUNCTION altera_valor_contrato()
+CREATE OR REPLACE FUNCTION verifica_insere_bolsa()
 RETURNS trigger AS $$
 DECLARE
+	minimo float;
+	data_cancel date;
+	media float;
+	vs float;
+	insc_aluno int;
+	desconto float;
 BEGIN
-	IF (NEW.bol_data_fim is not null AND OLD.bol_data_fim is null) then
-		-- Altera valor das vendas do contrato
-		UPDATE Venda
-		SET ven_valor_pago = ven_preco
-		WHERE ven_data >= now()
-			AND ven_contrato_id IN (SELECT V2.ven_contrato_id
-					     FROM Venda V2
-					     INNER JOIN Contrato C ON C.contr_id = V2.ven_contrato_id
-						 WHERE C.contr_aluno_id = NEW.bol_aluno_id and C.contr_tem_bolsa);
 
-		update contrato set contr_tem_bolsa = false where contr_aluno_id = NEW.bol_aluno_id;
+	SELECT B.bol_data_fim, B.bol_media_min
+	INTO data_cancel, minimo
+	FROM Bolsa B
+	INNER JOIN Aluno A ON (B.bol_aluno_id = A.alu_id)
+	INNER JOIN Inscricao I ON (I.insc_aluno_id = A.alu_id)
+	WHERE NEW.bol_aluno_id = I.insc_id;
+
+	
+
+
+	
+	IF (NEW.bol_data_fim is null) then
+	-- Se a bolsa com insert ou update estiver ativa
+
+		SELECT AVG(N.nota),  AVG(I1.insc_aluno_id)
+			INTO media, insc_aluno
+			FROM Nota N
+			INNER JOIN Inscricao I1 ON (I1.insc_id = N.inscricao_id)
+			WHERE N.inscricao_id=NEW.bol_aluno_id
+			AND N.avaliacao_id IN (SELECT avaliacao_id
+					FROM Avaliacao 
+					WHERE nome<>'VS');
+
+		IF(media < 6 AND media > 4) THEN 
+			SELECT N1.nota, I2.insc_aluno_id
+			INTO vs, insc_aluno
+			FROM Nota N1
+			INNER JOIN Inscricao I2 ON (I2.insc_id = N1.inscricao_id)
+			WHERE N1.inscricao_id=NEW.bol_aluno_id
+			AND N1.avaliacao_id IN (SELECT av_id
+						FROM Avaliacao 
+						WHERE nome='VS');
+			-- Se fez VS, altera media
+			IF (vs >= 6) THEN
+				media = 6;
+			ELSE
+				media = vs;
+			END IF;
+		END IF;
+
+		IF(media<minimo) THEN
+			raise exception 'NOTA NÃO PODE SER MENOR QUE A MÍNIMA DA BOLSA';
+		END IF;
 	END IF;
 
 	RETURN NEW;
@@ -91,11 +127,11 @@ END; $$ language plpgsql;
 
 
 
-DROP TRIGGER if exists altera_contrato_perda_bolsa_trigger ON Bolsa CASCADE;
+DROP TRIGGER if exists bloqueia_bolsa_se_media_ruim ON Bolsa CASCADE;
 
-CREATE TRIGGER altera_contrato_perda_bolsa_trigger
-AFTER UPDATE ON Bolsa
-FOR EACH ROW EXECUTE PROCEDURE altera_valor_contrato();
+CREATE TRIGGER bloqueia_bolsa_se_media_ruim
+AFTER INSERT OR UPDATE ON Bolsa
+FOR EACH ROW EXECUTE PROCEDURE verifica_insere_bolsa();
 
 
 CREATE OR REPLACE FUNCTION verifica_bolsa_nota_minima()
