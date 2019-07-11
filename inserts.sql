@@ -64,7 +64,6 @@ INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data)
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 1, '2018-01-01'); --31
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 1, '2017-01-01'); --32
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 6, 1, '2017-01-01'); --33
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 7, 1, '2017-01-01'); --34
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 8, 1, '2017-01-01'); --35
 
 
@@ -300,8 +299,9 @@ INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven
 
 --INSERTS PARA RESTRICAO 2
 --Para a Venda
-/*INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 10, 1, '2019-01-01');
-INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 37, 9.5);
+/*
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 10, 1, '2019-01-01');
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, (select insc_id from inscricao order by insc_id desc limit 1), 9.5);
 
 INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-01', 1); --mal
 INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-01', 1); --mal
@@ -315,4 +315,36 @@ INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven
 INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-05', 1); --mal
 INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-06', 1); --mal
 INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-06', 1);
+
+-- Para a nota
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (true, 7, 1, '2019-01-01');
+
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-01', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-01', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-02', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-02', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-03', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-03', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-04', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-04', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-05', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-05', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-06', null); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 7, '2019-01-06', null); --mal
+
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, (select insc_id from inscricao order by insc_id desc limit 1), 9.1); -- deve retornar erro
+
+-- Para valor nutricional
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (true, 6, 1, '2019-01-01'); 
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, (select insc_id from inscricao order by insc_id desc limit 1), 9.1);
+
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 2, 6, '2019-01-01', null);
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 2, 6, '2019-01-02', null);
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 2, 6, '2019-01-03', null);
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 2, 6, '2019-01-04', null);
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 2, 6, '2019-01-05', null);
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 2, 6, '2019-01-06', null);
+
+UPDATE Valor_nutricional SET valor = (valor * 10) where ing_id = 2;
+
 */

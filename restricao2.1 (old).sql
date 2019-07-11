@@ -77,7 +77,7 @@ BEGIN
 			END IF;
 		ELSIF (contador_comeu_mal_dia = 0 AND contador_ja_descontou > 0) THEN
 			raise notice 'contador comeu mal dia =0 and ja descontou >0';
-
+			
 			-- desmarca existentes e retorna ponto
 			UPDATE Venda
 			SET ven_desconta_ponto = false
@@ -93,7 +93,7 @@ BEGIN
 
 END; $$ language plpgsql;
 
-DROP TRIGGER if exists educacao_alimentar_insert_inscricao_trigger ON Venda CASCADE;
+DROP TRIGGER if exists educacao_alimentar_insert_inscricao_trigger ON Inscricao CASCADE;
 
 CREATE TRIGGER educacao_alimentar_insert_inscricao_trigger
 AFTER INSERT ON Inscricao
