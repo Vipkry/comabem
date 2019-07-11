@@ -56,16 +56,16 @@ INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data)
 
 
 INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 1, 1, '2019-01-01'); --25: Educ. Alimentar
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 4, 1, '2019-01-01'); --27
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 5, 1, '2019-01-01'); --28
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 2, 1, '2018-01-01'); --29
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 3, 1, '2018-01-01'); --30
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 4, 1, '2018-01-01'); --31
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 1, '2018-01-01'); --32
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 1, '2017-01-01'); --33
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 6, 1, '2017-01-01'); --34
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 7, 1, '2017-01-01'); --35
-INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 8, 1, '2017-01-01'); --36
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 4, 1, '2019-01-01'); --26
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 5, 1, '2019-01-01'); --27
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 2, 1, '2018-01-01'); --28
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 3, 1, '2018-01-01'); --29
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 4, 1, '2018-01-01'); --30
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 1, '2018-01-01'); --31
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 5, 1, '2017-01-01'); --32
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 6, 1, '2017-01-01'); --33
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 7, 1, '2017-01-01'); --34
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 8, 1, '2017-01-01'); --35
 
 
 -- INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (true, 3, 1, '2019-02-01'); --36
@@ -271,5 +271,19 @@ INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALU
 -- INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 3, 70); -- 70g de Creme de leite
 -- INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 5, 100); -- 100g de goiabada
 
+--INSERTS PARA RESTRIÇÃO 1
+/*
+--Para a Bolsa:
+INSERT INTO Bolsa (bol_media_min, bol_val_percent, bol_data_ini, bol_data_fim, bol_aluno_id) VALUES (7, 20, '2019-01-01', null, 1); 
 
-INSERT INTO Bolsa (bol_media_min, bol_val_percent, bol_data_ini, bol_data_fim, bol_aluno_id) VALUES (3, 20, '2019-01-01', null, 1);
+--Para a nota
+INSERT INTO Bolsa (bol_media_min, bol_val_percent, bol_data_ini, bol_data_fim, bol_aluno_id) VALUES (7, 20, '2019-01-01', null, 11);
+INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES  (true, 11, 2, '2019-01-01'); 
+
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 36, 7.0);
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 36, 5.0);
+
+
+--Para a Venda
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data) VALUES (19.90, 14.90, 1, 10, '2019-01-01');
+*/
