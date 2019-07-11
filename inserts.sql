@@ -247,29 +247,38 @@ INSERT INTO Recomendacao_nutricional (valor, idade, nut_id, margem_percent) VALU
 
 
 -- --INSERTS PARA QUEBRAR RESTRIÇÃO 3
--- INSERT INTO Receita (rec_nome) VALUES ('Bacon com creme de goiabada 1'); --3
+/*
+--Para Receita_Ingrediente
+ INSERT INTO Receita (rec_nome) VALUES ('Bacon com creme de goiabada 1'); --3
 
--- INSERT INTO Refeicao (ref_nome, ref_descricao, rec_id) VALUES ('Bacon com creme de goiabada', 'Delicioso prato agridoce', 3); 
+ INSERT INTO Refeicao (ref_nome, ref_descricao, rec_id) VALUES ('Bacon com creme de goiabada', 'Delicioso prato agridoce', 3); 
 
 -- -- Bacon
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (6, 5, 10); --Calorias
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (6, 3, 10); -- Gordura saturada
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (6, 1, 10); -- Carboidratos
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (6, 4, 10); -- Proteína
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (6, 5, 10); --Calorias
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (6, 3, 10); -- Gordura saturada
+INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (6, 1, 10); -- Carboidratos
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (6, 4, 10); -- Proteína
 
 -- --Creme de Leite
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 5, 7); --Calorias
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 4, 7); -- Gordura saturada
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 1, 7); -- Carboidratos
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 5, 7); --Calorias
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 4, 7); -- Gordura saturada
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (3, 1, 7); -- Carboidratos
 
--- -- Goiabada
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (5, 5, 10); --Calorias
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (5, 1, 10); -- Carboidratos
--- INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (5, 2, 10); -- Proteína
+ -- Goiabada
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (5, 5, 10); --Calorias
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (5, 1, 10); -- Carboidratos
+ INSERT INTO Valor_Nutricional (ing_id, nut_id, valor) VALUES (5, 2, 10); -- Proteína
 
--- INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 6, 100); -- 100g de bacon
--- INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 3, 70); -- 70g de Creme de leite
--- INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 5, 100); -- 100g de goiabada
+ INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 6, 100); -- 100g de bacon
+ INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 3, 70); -- 70g de Creme de leite
+ INSERT INTO Receita_Ingrediente (rec_id, ing_id, qtd) VALUES (3, 5, 100); -- 100g de goiabada
+
+--Para Recomendacao Nutricional
+ UPDATE RECOMENDACAO_NUTRICIONAL SET valor=0 where nut_id=1 and idade=6;
+
+--Para Valor Nutricional
+UPDATE Valor_Nutricional set valor=100 where nut_id=1 and ing_id=1;
+*/
 
 --INSERTS PARA RESTRIÇÃO 1
 /*
@@ -286,4 +295,24 @@ INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (2, 36, 5.0);
 
 --Para a Venda
 INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data) VALUES (19.90, 14.90, 1, 10, '2019-01-01');
+*/
+
+
+--INSERTS PARA RESTRICAO 2
+--Para a Venda
+/*INSERT INTO Inscricao (insc_ativa, insc_aluno_id, insc_disciplina_id, insc_data) VALUES (false, 10, 1, '2019-01-01');
+INSERT INTO Nota (avaliacao_id, inscricao_id, nota) VALUES (1, 37, 9.5);
+
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-01', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-01', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-02', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-02', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-03', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-03', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-04', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-04', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-05', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-05', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-06', 1); --mal
+INSERT INTO Venda (ven_preco, ven_valor_pago, ven_refeicao_id, ven_aluno_id, ven_data, ven_contrato_id) VALUES (19.90, 19.90, 1, 10, '2019-01-06', 1);
 */
